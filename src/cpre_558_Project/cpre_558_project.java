@@ -1,20 +1,57 @@
 package cpre_558_Project;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.swing.JFrame;
 
 public class cpre_558_project {
-	
+
 	public static void main(String[] args) {
-		List<Task> taskList = new ArrayList<>();
 		
-		//			 new Task(Id, c, d, r, Resource, Exclusive, Shared));
+		List<Task> taskList = new ArrayList<>();
 		
 		taskList.add(new Task("T1", 6, 10, 0));
 		taskList.add(new Task("T2", 7, 13, 2, "R", false, true));
 		taskList.add(new Task("T3", 3, 16, 1, "R", true, false));
 		taskList.add(new Task("T4", 7, 17, 2));
 		taskList.add(new Task("T5", 9, 19, 3));
+		
+		List<ScheduledTask> scheduledList1 = new ArrayList<>();
+		scheduledList1.add(new ScheduledTask(taskList.get(0), 0, 6));
+		
+		List<ScheduledTask> scheduledList2 = new ArrayList<>();
+		scheduledList2.add(new ScheduledTask(taskList.get(1), 2, 7));
+		
+		Map<Integer, List<ScheduledTask>> schedule = new HashMap<>();
+		schedule.put(1, scheduledList1);
+		schedule.put(2, scheduledList2);
+		
+		//Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new GUIComponent().setInputs(2, 3, 3, 1).setTaskList(taskList).setVisible(true);
+            	//new TaskFrame(taskList).setVisible(true);
+            	//new ScheduleFrame(schedule).setVisible(true);
+            }
+        });
+	}
+	
+	
+	public static void main1(String[] args) {
+		List<Task> taskList = new ArrayList<>();
+		
+		//			 new Task(Id, c, d, r, Resource, Exclusive, Shared));
+
+		taskList.add(new Task("T1", 6, 10, 0));
+		taskList.add(new Task("T2", 7, 13, 2, "R", false, true));
+		taskList.add(new Task("T3", 3, 16, 1, "R", true, false));
+		taskList.add(new Task("T4", 7, 17, 2));
+		taskList.add(new Task("T5", 9, 19, 3));
+
 		
 		/*
 		taskList.add(new Task("T1", 1, 2, 0));
