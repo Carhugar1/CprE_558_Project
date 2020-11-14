@@ -19,16 +19,6 @@ public class cpre_558_project {
 		taskList.add(new Task("T4", 7, 17, 2));
 		taskList.add(new Task("T5", 9, 19, 3));
 		
-		List<ScheduledTask> scheduledList1 = new ArrayList<>();
-		scheduledList1.add(new ScheduledTask(taskList.get(0), 0, 6));
-		
-		List<ScheduledTask> scheduledList2 = new ArrayList<>();
-		scheduledList2.add(new ScheduledTask(taskList.get(1), 2, 7));
-		
-		Map<Integer, List<ScheduledTask>> schedule = new HashMap<>();
-		schedule.put(1, scheduledList1);
-		schedule.put(2, scheduledList2);
-		
 		//Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -96,6 +86,16 @@ public class cpre_558_project {
 		taskList.add(new Task("T10", 2, 8, 5, "R3", true, false));
 		*/
 		
+		List<ScheduledTask> scheduledList1 = new ArrayList<>();
+		scheduledList1.add(new ScheduledTask(taskList.get(0), 0, 6));
+		
+		List<ScheduledTask> scheduledList2 = new ArrayList<>();
+		scheduledList2.add(new ScheduledTask(taskList.get(1), 2, 7));
+		
+		Map<Integer, List<ScheduledTask>> schedule = new HashMap<>();
+		schedule.put(1, scheduledList1);
+		schedule.put(2, scheduledList2);
+		
 		System.out.println("Task List In: ");
 		System.out.println("\t" + taskList);
 		System.out.println();
@@ -106,6 +106,9 @@ public class cpre_558_project {
 		scheduler.initialize();
 		
 		scheduler.calculateSchedule(taskList);
+		
+		//new TaskFrame(taskList).setVisible(true);
+    	//new ScheduleFrame(schedule).setVisible(true);
 	}
 
 }
